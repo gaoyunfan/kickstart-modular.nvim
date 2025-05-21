@@ -36,6 +36,13 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+--
+
+-- Buffer management with bufferline
+vim.keymap.set('n', '<leader>bn', '<cmd>enew<CR>', { desc = 'New buffer' })
+vim.keymap.set('n', '<Tab>', '<cmd>BufferLineCycleNext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>bx', '<cmd>bdelete<CR>', { desc = 'Close buffer' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -51,4 +58,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Terminal
+vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
+
+local float_term = require 'custom.utils.float-terminal'
+vim.keymap.set({ 'n', 't' }, '<space>tt', float_term.toggle_terminal, { desc = 'Toggle terminal' })
 -- vim: ts=2 sts=2 sw=2 et
